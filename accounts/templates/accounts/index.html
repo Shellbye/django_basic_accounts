@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accounts Sys.</title>
+</head>
+<body>
+<p>Accounts Sys. {% if user.is_authenticated %}Welcome, {{ user.username }}{% endif %}</p>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message | safe}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% if user.is_authenticated %}
+    <a href="{% url 'accounts:detail' %}">Detail</a>
+    <a href="{% url 'accounts:change_pwd' %}">Change password</a>
+    <a href="{% url 'accounts:logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'accounts:register' %}">Register</a>
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <a href="{% url 'accounts:forget_pwd' %}">Forget password</a>
+{% endif %}
+{% block content %}
+{% endblock %}
+</body>
+</html>
