@@ -1,0 +1,5 @@
+Django==1.9.6
+django-simple-captcha==0.5.1
+Pillow==3.3.0
+selenium==2.53.2
+six==1.10.0
