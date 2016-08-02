@@ -63,17 +63,17 @@ class UserLoginView(View):
     def post(request):
         login_form = UserLoginForm(request.POST, request=request)
         if login_form.is_valid():
-            if NEED_CONFIRM_EMAIL and not request.user.is_active:
+            user = authenticate(
+                username=request.POST.get('username'),
+                password=request.POST.get('password'),
+            )
+            if NEED_CONFIRM_EMAIL and not user.is_active:
                 messages.success(request, u"账号需要激活, 请登陆您的邮箱激活, 或"
                                           u"点击<a href='" + DOMAIN +
                                  reverse('accounts:resend_activate',
                                          kwargs={'username': request.POST.get('username')}) +
                                  u"'>这里</a>重发激活邮件")
                 return HttpResponseRedirect(reverse('accounts:index'))
-            user = authenticate(
-                username=request.POST.get('username'),
-                password=request.POST.get('password'),
-            )
             auth.login(request, user)
             messages.success(request, u'登录成功')
             if 'next' in request.GET:
