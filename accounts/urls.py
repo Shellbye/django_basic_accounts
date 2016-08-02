@@ -9,8 +9,8 @@ urlpatterns = [
     url(r'^resend_activate/(?P<username>.*)/$', resend_activate, name="resend_activate"),
     url(r'^login/$', UserLoginView.as_view(), name="login"),
     url(r'^logout/$', logout, name="logout"),
-    url(r'^detail/$', UserDetailView.as_view(), name="detail"),
-    url(r'^change_pwd/$', UserChangePasswordView.as_view(), name="change_pwd"),
+    url(r'^detail/$', login_required(UserDetailView.as_view()), name="detail"),
+    url(r'^change_pwd/$', login_required(UserChangePasswordView.as_view()), name="change_pwd"),
     url(r'^forget_pwd/$', ForgetPwdView.as_view(), name="forget_pwd"),
     url(r'^reset_pwd/(?P<code>.*)/$', ResetPwdView.as_view(), name="reset_pwd"),
 ]
