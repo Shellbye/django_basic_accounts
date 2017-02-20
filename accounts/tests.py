@@ -2,7 +2,7 @@
 import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.urlresolvers import reverse
-from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.firefox.webdriver import WebDriver
 
 import constants
 
@@ -13,7 +13,7 @@ class AccountsTests(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super(AccountsTests, cls).setUpClass()
-        cls.selenium = WebDriver("./chromedriver")
+        cls.selenium = WebDriver()
 
     @classmethod
     def tearDownClass(cls):
