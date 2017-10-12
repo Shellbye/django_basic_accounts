@@ -36,7 +36,10 @@ eg.
 7. Resend activate email
 
 ###Test
-1. run `python manage.py test accounts` to test
+
+1. Download driver from https://sites.google.com/a/chromium.org/chromedriver/home
+2. extract chromedriver and put it in project root dir
+3. run `python manage.py test accounts` to test
 
 ###Todo
 1. Log everything
